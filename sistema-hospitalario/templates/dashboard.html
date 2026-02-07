@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Panel</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="header">
+  <span class="cruz">+</span>
+  <h1>Panel de Gestión de Citas Médicas</h1>
+</div>
+
+<div class="table-container">
+  <p>Bienvenido, <strong>{{ session.usuario }}</strong></p>
+  <a href="/reservas">➕ Nueva cita</a>
+  <a href="/logout">🔒 Cerrar sesión</a>
+
+  <table>
+    <tr>
+      <th>Paciente</th>
+      <th>Correo</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Usuario</th>
+      <th>Estado</th>
+      {% if session.rol == 'admin' %}<th>Acción</th>{% endif %}
+    </tr>
+    {% for c in citas %}
+    <tr>
+      <td>{{ c.paciente }}</td>
+      <td>{{ c.correo }}</td>
+      <td>{{ c.fecha }}</td>
+      <td>{{ c.hora }}</td>
+      <td>{{ c.usuario }}</td>
+      <td>{{ c.estado }}</td>
+      {% if session.rol == 'admin' %}
+      <td>
+        <a href="/estado/{{ c.id }}/aprobar">✔ Aprobar</a> |
+        <a href="/estado/{{ c.id }}/rechazar">✖ Rechazar</a>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+</body>
+</html>

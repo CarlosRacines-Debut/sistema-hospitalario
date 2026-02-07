@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema Hospitalario</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="header">
+  <span class="cruz">+</span>
+  <h1>Sistema de Gestión Hospitalaria</h1>
+</div>
+
+<div class="container">
+  <h2>Ingreso al sistema</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}<p class="msg">{{ messages[0] }}</p>{% endif %}
+  {% endwith %}
+
+  <form method="POST">
+    <input name="usuario" placeholder="Usuario" required>
+    <input name="password" type="password" placeholder="Contraseña" required>
+    <button>Iniciar sesión</button>
+    <a href="/registro">Crear cuenta</a>
+  </form>
+</div>
+</body>
+</html>

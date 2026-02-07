@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="header">
+  <span class="cruz">+</span>
+  <h1>Sistema de Gestión Hospitalaria</h1>
+</div>
+
+<div class="container">
+  <h2>Registro de usuario</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}<p class="msg">{{ messages[0] }}</p>{% endif %}
+  {% endwith %}
+
+  <form method="POST">
+    <input name="nombre" placeholder="Nombre completo" required>
+    <input name="usuario" placeholder="Usuario" required>
+    <input name="password" type="password" placeholder="Contraseña (mínimo 8)" required>
+    <button>Registrar</button>
+  </form>
+</div>
+</body>
+</html>

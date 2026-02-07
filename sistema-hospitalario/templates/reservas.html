@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Nueva Cita</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="header">
+  <span class="cruz">+</span>
+  <h1>Agendamiento de Citas Médicas</h1>
+</div>
+
+<div class="container">
+  <h2>Nueva cita</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}<p class="msg">{{ messages[0] }}</p>{% endif %}
+  {% endwith %}
+
+  <form method="POST">
+    <input name="paciente" placeholder="Nombre del paciente" required>
+    <input name="correo" type="email" placeholder="Correo del paciente" required>
+    <input type="date" name="fecha" required>
+    <input type="time" name="hora" required>
+    <button>Guardar cita</button>
+  </form>
+
+  <a href="/dashboard">← Volver al panel</a>
+</div>
+</body>
+</html>
